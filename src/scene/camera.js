@@ -1,10 +1,11 @@
+import * as THREE from 'three'
+import sceneConf from '@/confs/scene-conf'
 import { scene } from './scene'
-import { PerspectiveCamera } from 'three'
-import sceneConf from '../confs/scene-conf'
+const OrbitControls = require('three-orbit-controls')(THREE)
 
 const { x, y, z } = sceneConf.camera.position
 
-const camera = new PerspectiveCamera(
+const _camera = new THREE.PerspectiveCamera(
   45,
   window.innerWidth,
   window.innerHeight,
@@ -12,10 +13,16 @@ const camera = new PerspectiveCamera(
   1000
 )
 
-camera.position.x = x
-camera.position.y = y
-camera.position.z = z
+_camera.position.x = x
+_camera.position.y = y
+_camera.position.z = z
 
-camera.lookAt(scene.position)
+_camera.lookAt(scene.position)
 
-export default camera
+const _controls = new OrbitControls(_camera)
+_controls.enableZoom = true
+_controls.maxDistance = 1500
+_controls.minDistance = 0
+
+export const camera = _camera
+export const controls = _controls

@@ -1,14 +1,15 @@
-import { scene, renderer, group } from './scene/scene'
-import camera from './scene/camera'
-import stats from './scene/stats'
-import gui from './scene/dat.gui'
-import Earth from './objects/earth'
+import { scene, renderer, group } from '@/scene/scene'
+import { camera, controls } from '@/scene/camera'
+import stats from '@/scene/stats'
+import gui from '@/scene/dat.gui'
+import earth from '@/objects/earth'
 
 class App {
   constructor() {
     this.stats = stats
     this.gui = gui
     this.camera = camera
+    this.controls = controls
     this.renderer = renderer
     this.renderer = renderer
     this.group = group
@@ -29,12 +30,15 @@ class App {
     }, false)
   }
   initScene() {
-    const earth = new Earth()
-    console.log(earth)
-    this.group.add(earth.mesh)
+    this.earth = earth
+    this.group.add(this.earth.mesh)
+
+    this.camera.aspect = window.innerWidth / window.innerHeight
+    this.camera.updateProjectionMatrix()
   }
   render() {
     requestAnimationFrame(this.render.bind(this))
+    group.rotation.y -= 0.005
     this.stats.update()
     this.renderer.render(this.scene, this.camera)
   }

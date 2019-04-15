@@ -1,7 +1,9 @@
+import texture from 'public/images/cloud.jpg'
+
 export default {
   radius: 150,
-  horFragment: 60,
-  verFragment: 60,
-  texture: false,
-  textureUrl: '/src/res/images/cloud.jpg'
+  horFragment: 40,
+  verFragment: 40,
+  texture: true,
+  textureUrl: texture
 }
