@@ -22,7 +22,7 @@
   "dependencies": {
     "dat.gui": "^0.7.6",
     "stats.js": "^0.17.0",
-    "three": "^0.103.0",
+    "three": "^0.125.0",
     "three-orbit-controls": "^82.1.0"
   },
   "devDependencies": {
